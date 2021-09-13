@@ -15,6 +15,7 @@ export default class RestaurantsDAO {
       );
     }
   }
+
   static async getRestaurants({
     filters = null,
     page = 0,
@@ -30,6 +31,7 @@ export default class RestaurantsDAO {
         query = { "address.zipcode": { $eq: filters["zipcode"] } };
       }
     }
+
     let cursor;
 
     try {
@@ -38,6 +40,7 @@ export default class RestaurantsDAO {
       console.error(`Unable to issue find command, ${e}`);
       return { restaurantsList: [], totalNumRestaurants: 0 };
     }
+
     const displayCursor = cursor
       .limit(restaurantsPerPage)
       .skip(restaurantsPerPage * page);
